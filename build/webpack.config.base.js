@@ -44,6 +44,10 @@ module.exports = (env, argv) => {
           loader: 'babel-loader',
         },
         {
+          test: /\.jsx$/,
+          loader: 'babel-loader',
+        },
+        {
           test: /\.vue$/,
           loader: 'vue-loader',
           options: vueLoaderConfig(argv.mode === 'development')
