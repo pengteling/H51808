@@ -45,10 +45,10 @@ module.exports = {
     new miniCssExtractPlugin({
       filename: 'css/[name]-[hash:8].css'
     }),
-    new copyWebpackPlugin([{
-      from: __dirname +'/src/assets',
-      to:'./assets/'//dist
-    }])
+    // new copyWebpackPlugin([{
+    //   from: __dirname +'/src/assets',
+    //   to:'./assets/'//dist
+    // }])
   ],
   devServer:{
     contentBase: "./dist",
