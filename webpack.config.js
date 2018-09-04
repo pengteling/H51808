@@ -1,5 +1,4 @@
-const webpack = require('webpack'),
-  cleanPlugin = require('clean-webpack-plugin'),
+const webpack = require('webpack'),  
   htmlPlugin = require('html-webpack-plugin'),
   devServer = require('webpack-dev-server'),
   miniCssExtractPlugin = require('mini-css-extract-plugin'),
@@ -16,19 +15,13 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     filename: './js/[name]-[hash:8].js',
-    publicPath: 'http://localhost:8888/'
+    publicPath: '/'
   },
-  plugins: [
-    new cleanPlugin(
-      ['dist/{js,css}/*.*'],//匹配删除的文件 string或array
-      {
-        root: __dirname
-      }
-    ),
+  plugins: [    
     new htmlPlugin({
       template: './src/index.html',//html 模板文件
       // chunks : ['index'],//引入的js对应的chuank 
-      excludeChunks: ['demo'],//排除对应的chuank
+      //excludeChunks: ['demo'],//排除对应的chuank
       inject: 'body',//引入的位置
       filename: 'index.html',//处理后导出的文件名
       title: '首页'
@@ -55,13 +48,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: [{
-          loader: 'babel-loader',
-          options: {
-            presets: ['env']
-          }
-        }]
+        test: /\.js$/,        
+        loader: 'babel-loader',         
       },
       {
         test: /\.vue$/,
