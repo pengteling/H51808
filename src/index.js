@@ -1,3 +1,10 @@
-import div from './js/msg'
-import './style/index.css'
-document.body.appendChild(div())
+import Vue from 'vue'
+import App from './App.vue'
+new Vue({
+  el:'#app',
+  data:{
+    msg:123
+  },
+  //render:h=>h('div','test')
+  render: h=>h(App)
+})
