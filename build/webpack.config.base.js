@@ -4,7 +4,8 @@ const webpack = require('webpack'),
   miniCssExtractPlugin = require('mini-css-extract-plugin'),
   copyWebpackPlugin = require('copy-webpack-plugin'),
   VueLoaderPlugin = require('vue-loader/lib/plugin'),
-  path = require('path')
+  path = require('path'),
+  vueLoaderConfig = require('./vue-loader.config')
 
 
 module.exports = (env, argv) => {
@@ -38,7 +39,8 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.vue$/,
-          loader: 'vue-loader'
+          loader: 'vue-loader',
+          options: vueLoaderConfig(argv.mode === 'development')
         },
         {
           test: /\.(png|jpg|gif|svg)$/,

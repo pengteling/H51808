@@ -1,17 +1,13 @@
 const webpack = require('webpack'),
   htmlPlugin = require('html-webpack-plugin'),
   devServer = require('webpack-dev-server'),
-  miniCssExtractPlugin = require('mini-css-extract-plugin'),
   copyWebpackPlugin = require('copy-webpack-plugin'),
   VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 merge = require('webpack-merge')
 const config = {
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new miniCssExtractPlugin({
-      filename: 'css/[name]-[hash:8].css'
-    })
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     contentBase: "./dist",
@@ -26,11 +22,36 @@ const config = {
     rules: [
       {
         test: /\.css$/,
-        use: [miniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       },
       {
         test: /\.scss$/,
-        use: [miniCssExtractPlugin.loader, 'css-loader', 'sass-loader', 'postcss-loader']
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              // // 开启 CSS Modules
+              // modules: false,
+              // // 自定义生成的类名
+              // localIdentName: '[path]-[name]-[hash:base64:5]',
+              // camelCase: true,
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
       }
     ]
   }
