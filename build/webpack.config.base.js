@@ -16,6 +16,12 @@ module.exports = (env, argv) => {
       filename: './js/[name]-[hash:8].js',
       publicPath: '/'
     },
+    resolve:{
+      extensions:['*','.js','.vue','.jsx'],
+      alias:{
+        '@':path.resolve(__dirname, '../src/components')
+      }
+    },
     plugins: [
       new htmlPlugin({
         template: './src/index.html',//html 模板文件
