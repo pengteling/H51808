@@ -20,9 +20,9 @@
           :is-have-completed="isHaveCompleted"
           @clear-completed="clearCompleted"
         >
-          
+
         </tabs>
-  
+
       </section>
     </div>
     <footer id="footer">
@@ -31,15 +31,15 @@
   </div>
 </template>
 <script>
-import "./style/comm.scss"
+import './style/comm.scss'
 import Item from './components/Item'
 import Tabs from './components/Tabs'
 
 export default {
-  mounted(){
+  mounted () {
     console.log(Tabs.__docs)
   },
-  data() {
+  data () {
     return {
       todos: [
         // {
@@ -47,51 +47,51 @@ export default {
         //   isCompleted:false
         // }
       ],
-      filter: "All"
-    };
+      filter: 'All'
+    }
   },
-  components:{
+  components: {
     Tabs,
     Item
   },
 
   computed: {
-    leftItemsCount() {
-      return this.todos.reduce((t, v) => (v.isCompleted ? t : t + 1), 0);
+    leftItemsCount () {
+      return this.todos.reduce((t, v) => (v.isCompleted ? t : t + 1), 0)
     },
-    isHaveCompleted() {
-      return this.todos.some(item => item.isCompleted);
+    isHaveCompleted () {
+      return this.todos.some(item => item.isCompleted)
     },
     checkAll: {
-      get() {
-        return this.todos.every(item => item.isCompleted);
+      get () {
+        return this.todos.every(item => item.isCompleted)
       },
-      set(val) {
-        this.todos.forEach(todo => (todo.isCompleted = val));
+      set (val) {
+        this.todos.forEach(todo => (todo.isCompleted = val))
       }
     }
   },
   methods: {
-    addTodo(e) {
+    addTodo (e) {
       this.todos.unshift({
         // content:e.target.value
         content: this.$refs.ipt.value,
         isCompleted: false
-      });
-      this.$refs.ipt.value = "";
+      })
+      this.$refs.ipt.value = ''
     },
-    deleteTodo(todo) {
+    deleteTodo (todo) {
       // this.todos.splice(this.todos.findIndex(item=> todo===item),1)
-      this.todos = this.todos.filter(item => item != todo);
+      this.todos = this.todos.filter(item => item !== todo)
     },
-    toggleFilter(filter) {
-      this.filter = filter;
+    toggleFilter (filter) {
+      this.filter = filter
     },
-    clearCompleted() {
-      this.todos = this.todos.filter(item => item.isCompleted !== true);
+    clearCompleted () {
+      this.todos = this.todos.filter(item => item.isCompleted !== true)
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

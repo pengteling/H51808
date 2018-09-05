@@ -40,6 +40,15 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
+          enforce: 'pre',
+          test: /\.(js|vue|jsx)$/,
+          loader: 'eslint-loader',
+          options:{
+            fix:true
+          },
+          exclude: /node_modules/
+        },
+        {
           test: /\.js$/,
           loader: 'babel-loader',
         },

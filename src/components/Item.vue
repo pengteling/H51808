@@ -6,15 +6,12 @@
   </div>
 </template>
 <script>
-export default {  
-  props: ["todo"],
+export default {
+  props: ['todo'],
   methods: {
-    deleteTodo() {
-      this.$emit("delete-todo", this.todo);
+    deleteTodo () {
+      this.$emit('delete-todo', this.todo)
     }
   }
-};
+}
 </script>
-
-
-

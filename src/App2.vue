@@ -4,8 +4,8 @@
 <script>
 import Comp from './CompFunctional'
 export default {
-  components:{
+  components: {
     Comp
-  }  
+  }
 }
 </script>

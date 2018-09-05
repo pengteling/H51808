@@ -2,7 +2,7 @@
 <div class="helper">
   <span class="left">{{leftItemsCount}} items left</span>
   <span class="tabs">
-        <span 
+        <span
           v-for="state in states"
           :class="{'actived': filter === state}"
           @click="toggleFilter(state)"
@@ -21,21 +21,21 @@
 
 <script>
 export default {
-  props: ["leftItemsCount", "filter", "isHaveCompleted"],
-  data() {
+  props: ['leftItemsCount', 'filter', 'isHaveCompleted'],
+  data () {
     return {
-      states: ["All", "Active", "Completed"]
-    };
+      states: ['All', 'Active', 'Completed']
+    }
   },
   methods: {
-    toggleFilter(state) {
-      this.$emit("toggle-filter", state);
+    toggleFilter (state) {
+      this.$emit('toggle-filter', state)
     },
-    clearCompleted() {
-      this.$emit("clear-completed");
+    clearCompleted () {
+      this.$emit('clear-completed')
     }
   }
-};
+}
 </script>
 <docs>
 #11234325235
