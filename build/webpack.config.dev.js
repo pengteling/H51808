@@ -9,6 +9,7 @@ const config = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
+  devtool: "cheap-module-eval-source-map",
   devServer: {
     contentBase: "./dist",
     inline: true,//实时刷新
@@ -17,9 +18,13 @@ const config = {
     },
     port: 8888,
     hot: true//启用热更新
-  },
+  },  
   module: {
     rules: [
+      {
+        resourceQuery: /blockType=docs/,
+        loader: require.resolve('./docs-loader.js')
+      },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader']

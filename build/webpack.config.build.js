@@ -11,13 +11,23 @@ const config = {
     new miniCssExtractPlugin({
       filename: 'css/[name]-[hash:8].css'
     })
-  ],  
+  ], 
+  // devtool: "cheap-module-source-map", 
+  optimization:{
+    splitChunks:{
+      chunks:'all',
+      name:'vendors'
+    },
+    runtimeChunk:{
+      name:'runtime'
+    }
+  },
   module: {
     rules: [
       {
         test: /\.css$/,
         use: [miniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
-      },
+      },      
       {
         test: /\.scss$/,
         use: [

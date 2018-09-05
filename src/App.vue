@@ -34,7 +34,11 @@
 import "./style/comm.scss"
 import Item from './components/Item'
 import Tabs from './components/Tabs'
+
 export default {
+  mounted(){
+    console.log(Tabs.__docs)
+  },
   data() {
     return {
       todos: [
@@ -90,3 +94,8 @@ export default {
 };
 </script>
 
+<style lang="scss">
+.test{
+  font-size: 100px;
+}
+</style>

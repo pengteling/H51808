@@ -1,3 +1,4 @@
+//const docLoader = require.resolve("./docs-loader")
 module.exports = (isDev) => {
   return {
     preserveWhitespace: false,
@@ -7,6 +8,9 @@ module.exports = (isDev) => {
     //     :"[hash:base64:5]",
     //   camelCase:true
     // }
+    // loaders: {
+    //   docs: docLoader
+    // },
   }
   
 }
