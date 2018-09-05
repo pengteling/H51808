@@ -19,7 +19,8 @@ module.exports = (env, argv) => {
     resolve:{
       extensions:['*','.js','.vue','.jsx'],
       alias:{
-        '@':path.resolve(__dirname, '../src/components')
+        '@':path.resolve(__dirname, '../src/components'),
+        'vue$':'vue/dist/vue.common.js'
       }
     },
     plugins: [
