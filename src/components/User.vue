@@ -16,6 +16,15 @@ export default {
   props: ['userid', 'name', 'photoid', 'sokey'],
   mounted () {
 
+  },
+  beforeRouteEnter (to, from, next) {
+    // ...
+    console.log('beforeRouteEnter')
+    next()
+  },
+  beforeRouteUpdate (to, from, next) {
+    console.log('beforeRouteUpdate')
+    next()
   }
 }
 </script>

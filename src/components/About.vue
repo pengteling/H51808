@@ -13,7 +13,18 @@
 <script>
 export default {
   mounted () {
-    console.log(this.$route)
+    // console.log(this.$route)
+  },
+  // beforeCreate () {
+  //   console.log('beforeCreate')
+  // },
+  beforeRouteEnter (to, from, next) {
+    // ...
+    console.log('beforeRouteEnter')
+    // console.log(this.$el)
+    next(vm => {
+      console.log(vm.$el)
+    })
   }
 }
 </script>

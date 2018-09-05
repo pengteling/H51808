@@ -22,6 +22,11 @@ const routes = [
   },
   {
     // name: 'About',
+    beforeEnter: (to, from, next) => {
+      // ...
+      console.log('beforeEnter')
+      next()
+    },
     path: '/about',
     component: About,
     props: true,

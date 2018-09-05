@@ -15,6 +15,11 @@ export default {
     //     query: { photoid: 23, sokey: '2018' }
     //   }),
     // 3000)
+  },
+  beforeRouteLeave (to, from, next) {
+    // ...
+    console.log('beforeRouteLeave')
+    next()
   }
 }
 </script>
