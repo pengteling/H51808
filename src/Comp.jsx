@@ -1,5 +1,5 @@
 // export default (context) => {
-  
+
 // }
 
 // export default {
@@ -18,9 +18,9 @@
 //     return h('div','comp2')
 //   }
 // }
-const arr = [1,2,3]
+const arr = [1, 2, 3]
 
-const Child = ({props}) => {
+const Child = ({ props }) => {
   return (
     <div>test - {props.prop1} - {arr}</div>
   )
@@ -29,8 +29,8 @@ export default {
   // components:{
   //   Child
   // },
-  render(){
-    return(
+  render () {
+    return (
       <Child prop1="test2">- {arr}</Child>
     )
   }
