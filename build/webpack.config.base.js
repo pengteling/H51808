@@ -25,7 +25,7 @@ module.exports = (env, argv) => {
     plugins: [
       new htmlPlugin({
         template: './src/index.html',//html 模板文件
-        // chunks : ['index'],//引入的js对应的chuank 
+        // chunks : ['index'],//引入的js对应的chuank
         //excludeChunks: ['demo'],//排除对应的chuank
         inject: 'body',//引入的位置
         filename: 'index.html',//处理后导出的文件名
