@@ -20,13 +20,13 @@
 // }
 const arr = [1,2,3]
 
-import {Child} from './CompFunctional.jsx'
+// import {Child} from './CompFunctional.jsx'
 
-// const Child = ({props}) => {
-//   return (
-//     <div>test - {props.prop1} - {arr}</div>
-//   )
-// }
+const Child = ({props}) => {
+  return (
+    <div>test - {props.prop1} - {arr}</div>
+  )
+}
 export default {
   // components:{
   //   Child
