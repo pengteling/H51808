@@ -17,8 +17,9 @@ const config = {
       errors: true//浏览器显示错误
     },
     port: 8888,
-    hot: true//启用热更新
-  },  
+    hot: true,//启用热更新
+    historyApiFallback:true
+  },
   module: {
     rules: [
       {
