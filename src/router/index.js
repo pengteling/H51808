@@ -55,8 +55,8 @@ const routes = [
       {
         name: 'UserWho',
         path: ':userid',
-        // props: true,
-        component: { template: `<div>用户{{$route.userid}}</div>`, props: ['sokey'] }
+        props: true,
+        component: { template: `<div>用户{{$route.params.userid}}</div>`, props: ['userid'] }
 
       }
     ]

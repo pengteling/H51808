@@ -9,6 +9,7 @@
     <p>
       {{userid}}
     </p>
+    <router-view></router-view>
   </div>
 </template>
 <script>
