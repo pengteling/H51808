@@ -1,40 +1,34 @@
-const webpack = require('webpack'),
-  htmlPlugin = require('html-webpack-plugin'),
-  devServer = require('webpack-dev-server'),
-  miniCssExtractPlugin = require('mini-css-extract-plugin'),
-  copyWebpackPlugin = require('copy-webpack-plugin'),
-  VueLoaderPlugin = require('vue-loader/lib/plugin')
-
-merge = require('webpack-merge')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const merge = require('webpack-merge')
 const config = {
-  plugins: [    
-    new miniCssExtractPlugin({
+  plugins: [
+    new MiniCssExtractPlugin({
       filename: 'css/[name]-[hash:8].css'
     })
-  ], 
-  // devtool: "cheap-module-source-map", 
-  optimization:{
-    splitChunks:{
-      chunks:'all',
-      name:'vendors'
+  ],
+  // devtool: "cheap-module-source-map",
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      name: 'vendors'
     },
-    runtimeChunk:{
-      name:'runtime'
+    runtimeChunk: {
+      name: 'runtime'
     }
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [miniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
-      },      
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+      },
       {
         test: /\.scss$/,
         use: [
-          miniCssExtractPlugin.loader, 
-          'css-loader',            
+          MiniCssExtractPlugin.loader,
+          'css-loader',
           'postcss-loader',
-          'sass-loader',
+          'sass-loader'
         ]
       }
     ]
