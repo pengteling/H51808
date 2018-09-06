@@ -12,6 +12,7 @@ const config = {
     overlay: {
       errors: true// 浏览器显示错误
     },
+    //headers:{},
     port: 8888,
     hot: true, // 启用热更新
     historyApiFallback: true

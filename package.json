@@ -55,6 +55,8 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "jsonp": "^0.2.1",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   }
