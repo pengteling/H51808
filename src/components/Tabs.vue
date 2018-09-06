@@ -1,22 +1,16 @@
 <template>
-<div class="helper">
-  <span class="left">{{leftItemsCount}} items left</span>
-  <span class="tabs">
-        <span 
-          v-for="state in states"
-          :class="{'actived': filter === state}"
-          @click="toggleFilter(state)"
-          :key="state"
-        >
-          {{ state }}
-
-        </span>
+<footer class="footer ">
+  <span class="todo-count">
+    <strong>{{leftItemsCount}}</strong>
+    <span> </span>
+  <span>item</span>
+  <span> left</span>
   </span>
-  <span class="clear" v-if="isHaveCompleted" @click="clearCompleted">
-        clearCompleted
-      </span>
-
-</div>
+  <ul class="filters ">
+    <li v-for="state in states" @click="toggleFilter(state)" :key="state"><a :class="{'selected': filter === state}">{{ state }}</a><span> </span></li>    
+  </ul>
+  <button class="clear-completed" v-if="isHaveCompleted" @click="clearCompleted">Clear completed</button>
+</footer>
 </template>
 
 <script>
