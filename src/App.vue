@@ -81,16 +81,18 @@ export default {
   },
   methods: {
     addTodo (e) {
-      this.todos.unshift({
+      if (this.$refs.ipt.value) {
+        this.todos.unshift({
         // content:e.target.value
-        content: this.$refs.ipt.value,
-        isCompleted: false
-      })
-      this.$refs.ipt.value = ''
-      this.$notify({
-        autoClose: 3000,
-        content: 'add a todo'
-      })
+          content: this.$refs.ipt.value,
+          isCompleted: false
+        })
+        this.$refs.ipt.value = ''
+        this.$notify({
+          autoClose: 3000,
+          content: 'add a todo'
+        })
+      }
     },
     deleteTodo (todo) {
       // this.todos.splice(this.todos.findIndex(item=> todo===item),1)

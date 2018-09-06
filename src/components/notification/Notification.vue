@@ -1,9 +1,9 @@
 <template>
-  <transition name="fade" @after-leave="afterLeave">
+  <transition name="fade" @after-leave="afterLeave" @after-enter="afterEnter">
     <div
       class="notification"
       :style="style"
-      v-show="visible"
+      v-if="visible"
     >
       <span class="content">{{ content }}</span>
       <a class="btn" @click.prevent="close">{{btn}}</a>
@@ -41,6 +41,9 @@ export default {
     },
     afterLeave () {
       this.$emit('closed')
+    },
+    afterEnter () {
+
     }
   }
 }
