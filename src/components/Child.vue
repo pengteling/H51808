@@ -1,5 +1,6 @@
 <template>
   <div>
-    <img src="../img/tv.png" alt="">
+    Child:
+    {{ $store.state.msg }}
   </div>
 </template>
