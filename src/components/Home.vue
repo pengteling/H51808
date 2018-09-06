@@ -1,6 +1,9 @@
 <template>
   <div>
-    Home
+    <h2>首页</h2>
+    <div class="home">
+      <a name="miaodian">Home</a>
+    </div>
   </div>
 </template>
 <script>
@@ -23,3 +26,10 @@ export default {
   }
 }
 </script>
+<style>
+.home{
+  height: 2000px;
+  padding-top: 1000px;
+  background: #580
+}
+</style>

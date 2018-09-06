@@ -18,8 +18,12 @@ export default {
   mounted () {
 
   },
+  created () {
+    // 发ajax
+  },
   beforeRouteEnter (to, from, next) {
     // ...
+    // 导航完成前 请求数据
     console.log('beforeRouteEnter')
     next()
   },

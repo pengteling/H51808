@@ -1,9 +1,12 @@
 import Home from '@/Home'
-import About from '@/About'
-import User from '@/User'
+// import About from '@/About'
+// import User from '@/User'
 import Router from 'vue-router'
 import Vue from 'vue'
 Vue.use(Router)
+
+const User = () => import(/* webpackChunkName: "userAbout" */ '@/User')
+const About = () => import(/* webpackChunkName: "userAbout" */ '@/About')
 
 /*
   route :
@@ -53,6 +56,9 @@ const routes = [
     name: 'User',
     path: '/user',
     component: User,
+    meta: {
+      requiresAuth: true
+    },
     // props: true,
     // props: { userid: 456, name: 'zs' },
     props: (route) => ({ userid: route.params.userid, photoid: route.query.photoid, sokey: route.query.sokey }),
@@ -60,6 +66,9 @@ const routes = [
       {
         name: 'UserWho',
         path: ':userid',
+        meta: {
+          // requiresAuth: true
+        },
         props: true,
         component: { template: `<div>用户{{$route.userid}}</div>`, props: ['userid'] }
 
@@ -80,5 +89,19 @@ const routes = [
 ]
 export default new Router({
   mode: 'history',
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+    // return { x: 0, y: 44 }
+    // if (savedPosition) {
+    //   console.log(savedPosition)
+    //   return savedPosition
+    //   // return { x: 0, y: 44 }
+    // }
+    if (to.hash) {
+      return {
+        selector: to.hash
+      }
+    }
+  }
 })
