@@ -1,24 +1,20 @@
-const webpack = require('webpack'),
-  htmlPlugin = require('html-webpack-plugin'),
-  devServer = require('webpack-dev-server'),
-  copyWebpackPlugin = require('copy-webpack-plugin'),
-  VueLoaderPlugin = require('vue-loader/lib/plugin')
+const webpack = require('webpack')
+const merge = require('webpack-merge')
 
-merge = require('webpack-merge')
 const config = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
-  devtool: "cheap-module-eval-source-map",
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
-    contentBase: "./dist",
-    inline: true,//实时刷新
+    contentBase: './dist',
+    inline: true, // 实时刷新
     overlay: {
-      errors: true//浏览器显示错误
+      errors: true// 浏览器显示错误
     },
     port: 8888,
-    hot: true,//启用热更新
-    historyApiFallback:true
+    hot: true, // 启用热更新
+    historyApiFallback: true
   },
   module: {
     rules: [
