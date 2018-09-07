@@ -1,0 +1,3 @@
+export const ADD_COUNT_TYPE = 'ADD_COUNT_TYPE'
+// export const ADD_COUNT_TYPE2 = 'ADD_COUNT_TYPE2'
+// export const ADD_COUNT_TYPE3 = 'ADD_COUNT_TYPE3'
