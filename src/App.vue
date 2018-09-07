@@ -85,7 +85,7 @@ export default{
     ...mapMutations({
       addCountComp: 'addCount'
     }),
-    ...mapActions(['addCountAction', 'loadData', 'loadDataB']),
+    ...mapActions(['addCountAction', 'loadData', 'loadDataB2']),
     ...mapActions({
       addCountActionComp: 'addCountAction'
     })
@@ -94,7 +94,7 @@ export default{
     // this.addCountAction({ step: 3 })
     // this.addCountActionComp({ step: 3 })
     // // this.loadData()
-    // this.loadDataB()
+    this.loadDataB2()
   },
   components: {
     Child

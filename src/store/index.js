@@ -81,11 +81,11 @@ export default new Vuex.Store({
       return dispatch('loadData').then(() => {
         console.log('loadDataB dispatch promise')
       })
+    },
+    async loadDataB2 ({ dispatch }) {
+      await dispatch('loadDataB')
+      console.log('loadDataB2')
     }
-    // async loadDataB2 ({ dispatch }) {
-    //   await dispatch('loadDataB')
-    //   console.log('loadDataB2')
-    // }
   },
   modules: {
     moduleA: moduleA
