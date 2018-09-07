@@ -46,11 +46,13 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.js$/,
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          exclude: /node_modules/
         },
         {
           test: /\.jsx$/,
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          exclude: /node_modules/
         },
         {
           test: /\.vue$/,
