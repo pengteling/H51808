@@ -4,16 +4,18 @@
       <input
         class="toggle"
         type="checkbox"
-        v-model="todo.isCompleted"
+        :checked="todo.isCompleted"
+        @input="changeCompleted(todo)"
       >
       <label @dblclick="editTodo(todo)">{{todo.content}}</label>
-      <button class="destroy" @click="deleteTodo"></button>
+      <button class="destroy" @click="deleteTodo(todo)"></button>
     </div>
-    <input v-show="isEditing" ref="iptEdit" class="edit" v-focus="true" v-model.lazy="todo.content" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)">
+    <input v-show="isEditing" ref="iptEdit" class="edit" v-focus="true" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" :value="todo.content"  >
   </li>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   // model:{
   //   props:"checked"
@@ -27,13 +29,13 @@ export default {
   },
 
   methods: {
-    deleteTodo () {
-      this.$emit('delete-todo', this.todo)
-    },
+    ...mapMutations(['changeCompleted', 'deleteTodo', 'changeTodo']),
+
     editTodo () {
       this.isEditing = true
     },
-    doneEdit () {
+    doneEdit (todo) {
+      this.changeTodo({ todo: todo, value: this.$refs.iptEdit.value })
       this.isEditing = false
     },
     cancelEdit () {
