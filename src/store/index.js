@@ -28,6 +28,9 @@ const store = new Vuex.Store({
     },
     isHaveTodo (state) {
       return state.todos.length
+    },
+    checkAll (state) {
+      return state.todos.every(item => item.isCompleted)
     }
   },
   mutations: {
@@ -35,17 +38,20 @@ const store = new Vuex.Store({
       state.todos.unshift(todo)
     },
     changeCompleted (state, todo) {
+      let index = state.todos.findIndex(item => item === todo)
+      state.todos[index].isCompleted = !state.todos[index].isCompleted
       // state.todos[index].isCompleted =!
-      state.todos = state.todos.map(item => {
-        if (item === todo) {
-          return Object.assign({}, item, { isCompleted: !item.isCompleted })
-        } else {
-          return item
-        }
-      })
+      console.log(state)
+      // state.todos = state.todos.map(item => {
+      //   if (item === todo) {
+      //     return Object.assign({}, item, { isCompleted: !item.isCompleted })
+      //   } else {
+      //     return item
+      //   }
+      // })
     },
     changeTodo (state, payload) {
-      // state.todos[index].isCompleted =!
+      console.log('changeTodo mutaion', payload)
       state.todos = state.todos.map(item => {
         if (item === payload.todo) {
           return Object.assign({}, item, { content: payload.value })
@@ -63,6 +69,34 @@ const store = new Vuex.Store({
     },
     clearCompleted (state) {
       state.todos = state.todos.filter(item => item.isCompleted !== true)
+    },
+    selectAll (state, checkAll) {
+      state.todos.forEach(todo => (todo.isCompleted = checkAll))
+    },
+    init (state, payload) {
+      if (payload.todos) {
+        state.todos = payload.todos
+        state.filter = payload.filter
+      }
+    }
+  },
+  actions: {
+    saveData ({ state }, payload) {
+      localStorage.setItem('filter', state.filter)
+      localStorage.setItem('todos', JSON.stringify(state.todos))
+    },
+    loadData ({ commit }) {
+      let todos, filter
+      if (localStorage.getItem('todos')) {
+        todos = JSON.parse(localStorage.getItem('todos'))
+      }
+      if (localStorage.getItem('filter')) {
+        filter = localStorage.getItem('filter')
+      }
+      commit('init', {
+        todos: todos || [],
+        filter: filter || 'All'
+      })
     }
   }
 })

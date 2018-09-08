@@ -4,9 +4,10 @@
       <input
         class="toggle"
         type="checkbox"
-        :checked="todo.isCompleted"
-        @input="changeCompleted(todo)"
+        v-model="completed"
       >
+      <!-- :checked="todo.isCompleted"
+        @input="changeCompleted(todo)" -->
       <label @dblclick="editTodo(todo)">{{todo.content}}</label>
       <button class="destroy" @click="deleteTodo(todo)"></button>
     </div>
@@ -23,8 +24,19 @@ export default {
   props: ['todo'],
   data () {
     return {
-      isEditing: false,
-      cache: this.todo.content
+      isEditing: false
+      // cache: this.todo.content
+    }
+  },
+  computed: {
+    completed: {
+      get () {
+        return this.todo.isCompleted
+      },
+      set (val) {
+        console.log('set')
+        this.changeCompleted(this.todo)
+      }
     }
   },
 
@@ -35,11 +47,13 @@ export default {
       this.isEditing = true
     },
     doneEdit (todo) {
+      console.log('doneEdit')
       this.changeTodo({ todo: todo, value: this.$refs.iptEdit.value })
       this.isEditing = false
     },
     cancelEdit () {
-      this.$refs.iptEdit.value = this.cache
+      // this.$refs.iptEdit.value = this.cache
+      console.log('cancelEdit')
       this.isEditing = false
     }
   },

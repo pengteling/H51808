@@ -6,7 +6,7 @@
       <input class="new-todo" placeholder="What needs to be done?" value="" @keyup.enter="addTodo" ref="ipt">
     </header>
     <section class="main" v-show="isHaveTodo">
-      <input id="toggle-all" class="toggle-all" type="checkbox" >
+      <input id="toggle-all" class="toggle-all" type="checkbox" v-model="checkAll">
       <label for="toggle-all"></label>
       <ul class="todo-list">
         <item v-for="(todo,index) in todosView" :key="index" :todo="todo">
@@ -25,7 +25,7 @@
 import './style/comm.scss'
 import Item from './components/Item'
 import Tabs from './components/Tabs'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   components: {
     Tabs,
@@ -33,20 +33,26 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['isHaveTodo', 'todosView'])
-    // checkAll: {
-    //   get () {
-    //     return this.todos.every(item => item.isCompleted)
-    //   },
-    //   set (val) {
-    //     this.todos.forEach(todo => (todo.isCompleted = val))
-    //   }
-    // }
+    ...mapGetters(['isHaveTodo', 'todosView']),
+    ...mapGetters({
+      checkAllComp: 'checkAll'
+    }),
+    checkAll: {
+      get () {
+        return this.checkAllComp
+      },
+      set (val) {
+        // this.todos.forEach(todo => (todo.isCompleted = val))
+        this.selectAll(val)
+      }
+    }
   },
   methods: {
     ...mapMutations({
-      addTodoStore: 'addTodo'
+      addTodoStore: 'addTodo',
+      selectAll: 'selectAll'
     }),
+    ...mapActions(['saveData', 'loadData']),
     addTodo (e) {
       // this.todos.unshift({
       //   // content:e.target.value
@@ -75,6 +81,7 @@ export default {
     // }
   },
   updated () {
+    this.saveData()
     // localStorage.setItem('filter', this.filter)
     // localStorage.setItem('todos', JSON.stringify(this.todos))
   },
@@ -85,6 +92,7 @@ export default {
     // if (localStorage.getItem('filter')) {
     //   this.filter = localStorage.getItem('filter')
     // }
+    this.loadData()
   }
 
 }

@@ -2,8 +2,8 @@
 <footer class="footer ">
   <span class="todo-count">
     <strong>{{leftItemsCount}}</strong>
-    <span> </span>
-  <span>item</span>
+
+  <span> item</span>
   <span> left</span>
   </span>
   <ul class="filters ">
@@ -14,20 +14,21 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapMutations } from 'vuex'
 export default {
-  props: ['leftItemsCount', 'filter', 'isHaveCompleted'],
+
   data () {
     return {
       states: ['All', 'Active', 'Completed']
     }
   },
+  computed: {
+    ...mapState(['filter']),
+    ...mapGetters(['leftItemsCount', 'isHaveCompleted'])
+
+  },
   methods: {
-    toggleFilter (state) {
-      this.$emit('toggle-filter', state)
-    },
-    clearCompleted () {
-      this.$emit('clear-completed')
-    }
+    ...mapMutations(['toggleFilter', 'clearCompleted'])
   }
 }
 </script>
