@@ -5,6 +5,9 @@
     <br>
     {{ this.$store.state.moduleA.msg }}
     <Cell></Cell>
+    <p>
+      {{ aCount }}
+    </p>
   </div>
 
 </template>
@@ -38,6 +41,16 @@ export default {
   mounted () {
     console.log(this['moduleA/aCount'])
     this.changeCount(789)
+    // this.$store.registerModule(['moduleA', 'myModule'], {
+    //   state: {
+    //     count: 111
+    //   }
+    // })
+    // this.$store.unregisterModule('myModule')
+    // setTimeout(() => {
+    //   this.$store.unregisterModule('myModule')
+    //   console.log(this.$store)
+    // }, 5000)
   },
   components: {
     Cell

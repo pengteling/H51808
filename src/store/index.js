@@ -5,7 +5,7 @@ import axios from 'axios'
 import moduleA from './modules/moduleA'
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
     msg: 123,
@@ -60,6 +60,9 @@ export default new Vuex.Store({
     },
     changeMusicList (state, payload) {
       state.musicList = payload
+    },
+    changeMsg (state, payload) {
+      state.msg = payload
     }
   },
   actions: {
@@ -91,3 +94,21 @@ export default new Vuex.Store({
     moduleA: moduleA
   }
 })
+if (module.hot) {
+  // 使 action 和 mutation 成为可热重载模块
+  module.hot.accept(['./modules/moduleA'], () => {
+    // 获取更新后的模块
+    // 因为 babel 6 的模块编译格式问题，这里需要加上 `.default`
+    // const newMutations = require('./mutations').default
+    const newModuleA = require('./modules/moduleA').default
+    // 加载新模块
+    store.hotUpdate({
+      // mutations: newMutations,
+      modules: {
+        moduleA: newModuleA
+      }
+    })
+  })
+}
+
+export default store

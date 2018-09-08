@@ -7,15 +7,16 @@ export default {
   },
   getters: {
     aCount (state) {
-      return state.count * 2
+      return state.count * 3
     }
   },
-  modules: {
-    moduleB: moduleB
-  },
+
   actions: {
     aAction2 ({ commit }) {
       console.log('test')
     }
+  },
+  modules: {
+    moduleB: moduleB
   }
 }

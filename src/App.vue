@@ -1,6 +1,7 @@
 <template>
   <div>
     <Child></Child>
+    <p>{{secUser}}</p>
     <!-- test
     <p>
       state: {{ $store.state.msg }} <br>
@@ -12,6 +13,11 @@
     <p>
       obj:{{ obj }}
     </p> -->
+    <p>
+      <!-- <input type="text" v-model="$store.state.msg"> -->
+      <input type="text" :value="msg3" @input="handlerInput" ref="ipt">
+      <input type="text" v-model="msg13">
+    </p>
   </div>
 </template>
 <script>
@@ -28,7 +34,7 @@ export default{
     // setInterval(() => this.addCountStep(3), 1000)
     // setInterval(() => this.addCountStep({ step: 3 }), 1000)
     // setInterval(() => this.$store.commit('addCountStep', { step: 3 }), 1000)
-    // setInterval(() => this.$store.commit({
+    // setTimeout(() => this.$store.commit({
     //   type: 'addCountStep',
     //   // payload: { step: 3 }
     //   step: 3
@@ -75,26 +81,43 @@ export default{
     },
     msg2 () {
       return this.message + 2
+    },
+    msg13: {
+      get () {
+        return this.$store.state.msg
+      },
+      set (value) {
+        // this.changeMsg(value)
+        this.$store.commit('changeMsg', value)
+      }
     }
     // secUser () {
     //   return this.users[1]
     // }
   },
   methods: {
-    ...mapMutations(['addCount', 'addCountStep', 'changeObj']),
+    ...mapMutations(['addCount', 'addCountStep', 'changeObj', 'changeMsg']),
     ...mapMutations({
       addCountComp: 'addCount'
     }),
     ...mapActions(['addCountAction', 'loadData', 'loadDataB2']),
     ...mapActions({
       addCountActionComp: 'addCountAction'
-    })
+    }),
+    handlerInput () {
+      //
+      this.changeMsg(this.$refs.ipt.value)
+    }
   },
   created () {
     // this.addCountAction({ step: 3 })
     // this.addCountActionComp({ step: 3 })
     // // this.loadData()
-    this.loadDataB2()
+    setTimeout(() => this.loadDataB2(), 3000)
+    this.$store.subscribe((mutation, state) => {
+      console.log(mutation)
+      console.log(state.musicList)
+    })
   },
   components: {
     Child
